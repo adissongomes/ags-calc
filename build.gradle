@@ -1,0 +1,20 @@
+plugins {
+    id 'war'
+    id 'java'
+    id 'net.ltgt.apt' version '0.10'
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.0'
+    apt "org.projectlombok:lombok:1.18.0"
+
+    compile 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.47'
+
+    compile 'org.primefaces:primefaces:6.0'
+    compile 'com.sun.faces:jsf-api:2.2.17'
+    compile 'com.sun.faces:jsf-impl:2.2.17'
+}
