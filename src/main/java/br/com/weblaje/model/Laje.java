@@ -12,24 +12,24 @@ public class Laje {
     public static final int DIRECAO_SIMPLES = 1;
     public static final int DIRECAO_DUPLA  = 2;
 
-    final BigDecimal lx;
+    final double lx;
 
-    final BigDecimal ly;
+    final double ly;
 
     /**
      * NBR 6118
      * 7cm, 10cm, 12cm
      */
-    final BigDecimal altura;
+    final double altura;
 
     final Agregado agregado;
 
-    final BigDecimal espessuraArgamassa;
+    final double espessuraArgamassa;
 
     /**
      * Espessura do piso
      */
-    final BigDecimal espessuraMaterial;
+    final double espessuraMaterial;
 
     @Builder.Default
     Limites limites = Limites.builder().build();
@@ -60,5 +60,7 @@ public class Laje {
      * Unidade MPa
      */
     int fck = 25;
+
+    Carregamento carregamento;
 
 }

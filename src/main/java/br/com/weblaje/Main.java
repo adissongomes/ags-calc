@@ -1,7 +1,7 @@
 package br.com.weblaje;
 
 import br.com.weblaje.model.Laje;
-import br.com.weblaje.service.Calculator;
+import br.com.weblaje.service.Calculadora;
 
 import java.math.BigDecimal;
 
@@ -14,8 +14,8 @@ public class Main {
                 .ly(new BigDecimal(3).setScale(2))
                 .build();
 
-        Calculator calculator = new Calculator(laje);
-        calculator.calculateLambda();
+        Calculadora calculadora = new Calculadora(laje);
+        calculadora.calculaLambda();
 
         System.out.println(laje);
 
