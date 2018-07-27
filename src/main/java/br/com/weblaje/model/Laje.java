@@ -9,30 +9,39 @@ import java.math.BigDecimal;
 @Builder
 public class Laje {
 
+    /**
+     * Classe da laje
+     */
     public static final int DIRECAO_SIMPLES = 1;
+
+    /**
+     * Classe da laje
+     */
     public static final int DIRECAO_DUPLA  = 2;
 
-    final double lx;
+    private final double lx;
 
-    final double ly;
+    private final double ly;
 
     /**
      * NBR 6118
      * 7cm, 10cm, 12cm
      */
-    final double altura;
+    private final double altura;
 
-    final Agregado agregado;
+    private final Agregado agregado;
 
-    final double espessuraArgamassa;
+    private final double espessuraConcreto;
+
+    private final double espessuraArgamassa;
 
     /**
      * Espessura do piso
      */
-    final double espessuraMaterial;
+    private final double espessuraMaterial;
 
     @Builder.Default
-    Limites limites = Limites.builder().build();
+    private Limites limites = Limites.builder().build();
 
     /**
      * Classe de agressividade
@@ -42,25 +51,27 @@ public class Laje {
      * III - 3.5
      * IV - 4.5
      */
-    double caa;
+    private double caa;
 
-    BigDecimal lambda;
+    private BigDecimal lambda;
 
     /**
      * lambda > 2: ARMADO EM UMA DIRECAO
      * lambda <= 2: ARMADO EM DUAS DIRECOES
      */
     @Builder.Default
-    int classe = DIRECAO_SIMPLES;
+    private int classe = DIRECAO_SIMPLES;
 
     @Builder.Default
-    Aco aco = Aco.CA50;
+    private Aco aco = Aco.CA50;
 
     /**
      * Unidade MPa
      */
-    int fck = 25;
+    private int fck = 25;
 
-    Carregamento carregamento;
+    private Carregamento carregamento;
+
+    private Momento momento;
 
 }
