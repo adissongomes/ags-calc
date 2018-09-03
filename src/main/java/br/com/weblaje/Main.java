@@ -3,12 +3,13 @@ package br.com.weblaje;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Limites;
 import br.com.weblaje.service.Calculadora;
-
-import java.math.BigDecimal;
+import br.com.weblaje.table.MarcusValues;
 
 public class Main {
 
     public static void main(String[] args) {
+
+        MarcusValues values = MarcusValues.getInstance();
 
         Laje laje = Laje.builder()
                 .lx(4)

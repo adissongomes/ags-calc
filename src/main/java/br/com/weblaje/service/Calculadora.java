@@ -3,6 +3,7 @@ package br.com.weblaje.service;
 import br.com.weblaje.model.Carregamento;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Momento;
+import br.com.weblaje.table.MarcusValues;
 
 import java.math.BigDecimal;
 
@@ -16,7 +17,7 @@ public class Calculadora {
 
     public void calculaLambda() {
 
-        BigDecimal lambda = new BigDecimal(laje.getLy()/laje.getLx())
+        BigDecimal lambda = new BigDecimal(laje.getLy() / laje.getLx())
                 .setScale(2, BigDecimal.ROUND_HALF_UP);
         laje.setLambda(lambda);
 
@@ -53,16 +54,21 @@ public class Calculadora {
         // TODO ler de tabelas conforme Classe da laje e suas Bordas
         Momento momento = new Momento();
         double pLx = laje.getCarregamento().getP() * Math.pow(laje.getLx(), 2);
-        momento.setMx(0.0393 * pLx);
-        momento.setMy(0.0251 * pLx);
-        momento.setMex(0.0886 * pLx);
-        momento.setMey(0.0568 * pLx);
+
+        MarcusValues.MarcusData marcusData = MarcusValues
+                .getInstance()
+                .getMarcusData(laje.getLimites().getType(), laje.getLambda().doubleValue());
+
+        momento.setMx(marcusData.getCx() * pLx);
+        momento.setMy(marcusData.getCy() * pLx);
+        momento.setMex(marcusData.getEx() * pLx);
+        momento.setMey(marcusData.getEy() * pLx);
         laje.setMomento(momento);
     }
 
     public void calculaArmaduraFlexao() {
         // TODO nao sei o que é Yc
-        double d = laje.getAltura() - 0.1/2 - 0.25;
+        double d = laje.getAltura() - 0.1 / 2 - 0.25;
         double fcd = laje.getFck() / 1.4 * 1000;
         double fyd = laje.getAco().getFyk() / 1.15 * 1000;
         double md = 1.4 * laje.getMomento().getMx();

@@ -17,7 +17,7 @@ public class Laje {
     /**
      * Classe da laje
      */
-    public static final int DIRECAO_DUPLA  = 2;
+    public static final int DIRECAO_DUPLA = 2;
 
     private final double lx;
 
