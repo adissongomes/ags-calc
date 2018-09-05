@@ -2,6 +2,7 @@ package br.com.weblaje.table;
 
 import lombok.Data;
 
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -85,6 +86,16 @@ public final class MarcusValues {
 
     @Data
     public static class MarcusData {
+
+        private static final Field[] declaredFields;
+
+        static {
+            declaredFields = MarcusData.class.getDeclaredFields();
+            for (Field f : declaredFields) {
+                f.setAccessible(true);
+            }
+        }
+
         private double cx;
         private double cy;
         private double ex;
@@ -92,24 +103,38 @@ public final class MarcusValues {
         private double kx;
 
         public void set(String fieldName, String value) {
+
             value = value.replaceAll(",", ".");
-            switch (fieldName) {
-                case "cx":
-                    cx = Double.parseDouble(value);
-                    break;
-                case "cy":
-                    cy = Double.parseDouble(value);
-                    break;
-                case "ex":
-                    ex = Double.parseDouble(value);
-                    break;
-                case "ey":
-                    ey = Double.parseDouble(value);
-                    break;
-                case "kx":
-                    kx = Double.parseDouble(value);
-                    break;
+
+            try {
+                for (int i = 0; i < declaredFields.length; i++) {
+                    Field declaredField = declaredFields[i];
+                    if (declaredField.getName().equals(fieldName)) {
+                        declaredField.set(this, Double.valueOf(value));
+                        break;
+                    }
+                }
+            } catch (IllegalAccessException e) {
+                LOGGER.warning("Value cannot be defined: " + e.getMessage());
             }
+
+//            switch (fieldName) {
+//                case "cx":
+//                    cx = Double.parseDouble(value);
+//                    break;
+//                case "cy":
+//                    cy = Double.parseDouble(value);
+//                    break;
+//                case "ex":
+//                    ex = Double.parseDouble(value);
+//                    break;
+//                case "ey":
+//                    ey = Double.parseDouble(value);
+//                    break;
+//                case "kx":
+//                    kx = Double.parseDouble(value);
+//                    break;
+//            }
         }
     }
 

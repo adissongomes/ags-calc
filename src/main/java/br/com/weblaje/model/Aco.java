@@ -2,6 +2,7 @@ package br.com.weblaje.model;
 
 public enum Aco {
 
+    CA25(500),
     CA50(500),
     CA60(600);
 

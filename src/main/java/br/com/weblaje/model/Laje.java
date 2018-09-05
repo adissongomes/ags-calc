@@ -9,6 +9,30 @@ import java.math.BigDecimal;
 @Builder
 public class Laje {
 
+    public enum CAA {
+        I(20), II(25), III(35), IV(45);
+        private int tamanho;
+
+        CAA(int tamanho) {
+            this.tamanho = tamanho;
+        }
+
+        /** Assume os seguintes valores segundo NBR 6118
+         * <pre>  I - 20mm</pre>
+         * <pre> II - 25mm</pre>
+         * <pre>III - 35mm</pre>
+         * <pre> IV - 45mm</pre>
+         * @return tamanho em milimetros
+         */
+        public int getTamanho() {
+            return tamanho;
+        }
+
+        public double getTamanhoEmMetro() {
+            return (double) tamanho / 1000;
+        }
+    }
+
     /**
      * Classe da laje
      */
@@ -45,13 +69,10 @@ public class Laje {
 
     /**
      * Classe de agressividade
-     * Assume os seguintes valores segundo NBR 6118
-     * I - 2.0
-     * II- 2.5
-     * III - 3.5
-     * IV - 4.5
+     * @see CAA#getTamanho()
      */
-    private double caa;
+    @Builder.Default
+    private CAA caa = CAA.II;
 
     private BigDecimal lambda;
 
@@ -68,6 +89,7 @@ public class Laje {
     /**
      * Unidade MPa
      */
+    @Builder.Default
     private int fck = 25;
 
     private Carregamento carregamento;

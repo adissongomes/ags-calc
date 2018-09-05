@@ -3,11 +3,15 @@ package br.com.weblaje.service;
 import br.com.weblaje.model.Carregamento;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Momento;
+import br.com.weblaje.table.KMDValues;
 import br.com.weblaje.table.MarcusValues;
 
 import java.math.BigDecimal;
 
 public class Calculadora {
+
+    private static final double LAMBDA_C = 1.4;
+    private static final double LAMBDA_S = 1.15;
 
     private final Laje laje;
 
@@ -68,14 +72,15 @@ public class Calculadora {
 
     public void calculaArmaduraFlexao() {
         // TODO nao sei o que é Yc
-        double d = laje.getAltura() - 0.1 / 2 - 0.25;
-        double fcd = laje.getFck() / 1.4 * 1000;
-        double fyd = laje.getAco().getFyk() / 1.15 * 1000;
-        double md = 1.4 * laje.getMomento().getMx();
+        double d = laje.getAltura() - (0.01 / 2) - laje.getCaa().getTamanhoEmMetro();
+        double fcd = laje.getFck() / LAMBDA_C * 1000;
+        double fyd = laje.getAco().getFyk() / LAMBDA_S * 1000;
+        double md = LAMBDA_C * laje.getMomento().getMx();
         double kmd = md / (1 * Math.pow(d, 2) * fcd);
+        kmd = Double.valueOf(String.format("%.3f", kmd));
 
         // valor ks buscar na tabela conforme valor kmd
-        double ks = 42.16;
+        double ks = KMDValues.getInstance().getKs(laje.getAco(), kmd); // 42.16
         double as = md / (ks * d);
         // nao sei o que fazer daqui :P
     }
