@@ -2,6 +2,7 @@ package br.com.weblaje;
 
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Limites;
+import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
 import br.com.weblaje.table.KMDValues;
 import br.com.weblaje.table.MarcusValues;
@@ -22,6 +23,11 @@ public class Main {
                 .espessuraConcreto(.02)
                 .espessuraArgamassa(.02)
                 .espessuraMaterial(.01)
+                .pesosEspecificos(PesosEspecificos.builder()
+                        .concretoArmado(25)
+                        .argamassa(21)
+                        .material(18)
+                        .build())
                 .limites(Limites.builder()
                         .lx(Limites.Edge.SIMPLES)
                         .ly(Limites.Edge.SIMPLES)

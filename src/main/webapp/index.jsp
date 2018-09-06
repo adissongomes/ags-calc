@@ -71,6 +71,23 @@
     <label for="emat">Espessura material (mm)</label>
     <input id="emat" type="number" name="emat"/>
 
+    <label for="q">Carga acidental (kN/m<sup>2</sup>)</label>
+    <input id="q" name="q" placeholder="0.00"/>
+
+    <h4>Pesos especificos</h4>
+
+    <label for="concretoArmado">Concreto armado (kN/m<sup>2</sup>)</label>
+    <input id="concretoArmado" name="concretoArmado" value="25"/>
+    <br>
+
+    <label for="argamassa">Material (kN/m<sup>2</sup>)</label>
+    <input id="argamassa" name="argamassa" value="21"/>
+    <br>
+
+    <label for="material">Material (kN/m<sup>2</sup>)</label>
+    <input id="material" name="material" value="18"/>
+    <br>
+
     <br>
     <button>Calcular</button>
 </form>

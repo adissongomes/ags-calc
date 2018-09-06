@@ -4,6 +4,7 @@ import br.com.weblaje.model.Aco;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Laje.CAA;
 import br.com.weblaje.model.Limites;
+import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
 import br.com.weblaje.table.MarcusValues;
 import br.com.weblaje.table.MarcusValues.MarcusType;
@@ -29,6 +30,10 @@ public class CalculadoraServlet extends HttpServlet {
         CAA caa = CAA.valueOf(req.getParameter("caa"));
         Aco aco = Aco.valueOf(req.getParameter("aco"));
         int fck = Integer.valueOf(req.getParameter("fck"));
+        double q = Double.valueOf(req.getParameter("q").replaceAll(",", "."));
+        double gConcreto = Double.valueOf(req.getParameter("concretoArmado").replaceAll(",", "."));
+        double gArg = Double.valueOf(req.getParameter("argamassa").replaceAll(",", "."));
+        double gMat = Double.valueOf(req.getParameter("material").replaceAll(",", "."));
         double e = (double) Integer.valueOf(req.getParameter("e")) / 1000;
         double earg = (double) Integer.valueOf(req.getParameter("earg")) / 1000;
         double emat = (double) Integer.valueOf(req.getParameter("emat")) / 1000;
@@ -39,6 +44,7 @@ public class CalculadoraServlet extends HttpServlet {
                 .lx(lx)
                 .ly(ly)
                 .fck(fck)
+                .q(q)
                 .altura(altura)
                 .limites(limites)
                 .aco(aco)
@@ -46,6 +52,11 @@ public class CalculadoraServlet extends HttpServlet {
                 .espessuraConcreto(e)
                 .espessuraArgamassa(earg)
                 .espessuraMaterial(emat)
+                .pesosEspecificos(PesosEspecificos.builder()
+                        .concretoArmado(gConcreto)
+                        .argamassa(gArg)
+                        .material(gMat)
+                        .build())
                 .build();
         Calculadora c = new Calculadora(laje);
 

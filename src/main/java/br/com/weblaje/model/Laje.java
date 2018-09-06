@@ -69,6 +69,9 @@ public class Laje {
     private final double espessuraMaterial;
 
     @Builder.Default
+    private final PesosEspecificos pesosEspecificos = PesosEspecificos.builder().build();
+
+    @Builder.Default
     private Limites limites = Limites.builder().build();
 
     /**
@@ -95,6 +98,9 @@ public class Laje {
      */
     @Builder.Default
     private int fck = 25;
+
+    @Builder.Default
+    private double q = 1.5;
 
     private Carregamento carregamento;
 

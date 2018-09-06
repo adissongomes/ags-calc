@@ -41,17 +41,17 @@ public class Calculadora {
         // TODO recuperar valores das tabelas
         // valores estaticos serao lidos da tabela peso especifico
         // 25 referece ao valor de concreto armado
-        double g = laje.getAltura() * 25;
+        double g = laje.getAltura() * laje.getPesosEspecificos().getConcretoArmado();
 
         // 21 refere-se ao valor de argamassa de cimento e areia
         // 18 refere-se ao valor de lajotas ceramicas
-        double g1 = laje.getEspessuraArgamassa() * 21 +
-                laje.getEspessuraMaterial() * 18;
+        double g1 = laje.getEspessuraArgamassa() * laje.getPesosEspecificos().getArgamassa() +
+                laje.getEspessuraMaterial() * laje.getPesosEspecificos().getMaterial();
 
         if (g1 < 1)
             g1 = 1;
 
-        Carregamento carregamento = new Carregamento(g, g1, 1.5);
+        Carregamento carregamento = new Carregamento(g, g1, laje.getQ());
         laje.setCarregamento(carregamento);
     }
 
