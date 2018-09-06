@@ -33,6 +33,10 @@ public class Laje {
         }
     }
 
+    public enum Classe {
+        DIRECAO_UNICA, DIRECAO_DUPLA
+    }
+
     /**
      * Classe da laje
      */
@@ -81,7 +85,7 @@ public class Laje {
      * lambda <= 2: ARMADO EM DUAS DIRECOES
      */
     @Builder.Default
-    private int classe = DIRECAO_SIMPLES;
+    private Classe classe = Classe.DIRECAO_UNICA;
 
     @Builder.Default
     private Aco aco = Aco.CA50;
@@ -96,4 +100,5 @@ public class Laje {
 
     private Momento momento;
 
+    private Armadura armadura;
 }

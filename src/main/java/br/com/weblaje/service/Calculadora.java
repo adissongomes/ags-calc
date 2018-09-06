@@ -1,5 +1,6 @@
 package br.com.weblaje.service;
 
+import br.com.weblaje.model.Armadura;
 import br.com.weblaje.model.Carregamento;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Momento;
@@ -26,9 +27,9 @@ public class Calculadora {
         laje.setLambda(lambda);
 
         if (lambda.doubleValue() > 2) {
-            laje.setClasse(Laje.DIRECAO_SIMPLES);
+            laje.setClasse(Laje.Classe.DIRECAO_UNICA);
         } else {
-            laje.setClasse(Laje.DIRECAO_DUPLA);
+            laje.setClasse(Laje.Classe.DIRECAO_DUPLA);
         }
     }
 
@@ -71,17 +72,25 @@ public class Calculadora {
     }
 
     public void calculaArmaduraFlexao() {
-        // TODO nao sei o que é Yc
+
         double d = laje.getAltura() - (0.01 / 2) - laje.getCaa().getTamanhoEmMetro();
-        double fcd = laje.getFck() / LAMBDA_C * 1000;
-        double fyd = laje.getAco().getFyk() / LAMBDA_S * 1000;
+        double fcd = laje.getFck() / LAMBDA_C * 1000; // Yc é valor constante
         double md = LAMBDA_C * laje.getMomento().getMx();
         double kmd = md / (1 * Math.pow(d, 2) * fcd);
         kmd = Double.valueOf(String.format("%.3f", kmd));
 
         // valor ks buscar na tabela conforme valor kmd
         double ks = KMDValues.getInstance().getKs(laje.getAco(), kmd); // 42.16
-        double as = md / (ks * d);
+        double as = Double.valueOf(String.format("%.3f", md / (ks * d)));
+        Armadura armadura = Armadura.builder()
+                .d(d)
+                .fcd(fcd)
+                .md(md)
+                .kmd(kmd)
+                .ks(ks)
+                .as(as)
+                .build();
+        laje.setArmadura(armadura);
         // nao sei o que fazer daqui :P
     }
 

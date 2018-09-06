@@ -13,7 +13,7 @@ public class Startup {
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(createTempDir());
         tomcat.setPort(PORT);
-        tomcat.addWebapp("/", new File("src/main/webapp").getAbsolutePath());
+        tomcat.addWebapp("", new File("src/main/webapp").getAbsolutePath());
         tomcat.start();
         tomcat.getServer().await();
     }

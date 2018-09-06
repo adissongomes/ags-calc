@@ -1,11 +1,3 @@
-.gradle
-/build/
-gradle-app.setting
-!gradle-wrapper.jar
-.gradletasknamecache
-*.class
-*.log
-
 *.jar
 *.war
 *.nar
@@ -13,6 +5,14 @@ gradle-app.setting
 *.zip
 *.tar.gz
 *.rar
+
+.gradle
+/build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+*.class
+*.log
 
 hs_err_pid*
 

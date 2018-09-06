@@ -13,37 +13,46 @@ public class Limites {
     }
 
     @Builder.Default
-    Edge lx = Edge.SIMPLES,
+    private Edge lx = Edge.SIMPLES,
             lx1 = Edge.SIMPLES,
             ly = Edge.SIMPLES,
             ly1 = Edge.SIMPLES;
 
-    public MarcusType getType() {
-        if (lx == Edge.SIMPLES && ly == Edge.SIMPLES) {
+    private MarcusType type;
 
-            if (lx1 == Edge.SIMPLES && ly1 == Edge.SIMPLES) {
-                return MarcusType.TYPE_1;
-            }
-            if (lx1 == Edge.SIMPLES && ly1 == Edge.ENGASTADO) {
-                return MarcusType.TYPE_2;
-            }
-            if (lx1 == Edge.ENGASTADO && ly1 == Edge.ENGASTADO) {
-                return MarcusType.TYPE_3;
-            }
-
+    public static Limites buildLimites(MarcusType type) {
+        LimitesBuilder builder = Limites.builder().type(type);
+        switch (type) {
+            case TYPE_2:
+                return builder
+                        .lx(Edge.ENGASTADO)
+                        .build();
+            case TYPE_3:
+                return builder
+                        .lx(Edge.ENGASTADO)
+                        .ly(Edge.ENGASTADO)
+                        .build();
+            case TYPE_4:
+                return builder
+                        .lx(Edge.ENGASTADO)
+                        .lx1(Edge.ENGASTADO)
+                        .build();
+            case TYPE_5:
+                return builder
+                        .lx(Edge.ENGASTADO)
+                        .lx1(Edge.ENGASTADO)
+                        .ly(Edge.ENGASTADO)
+                        .build();
+            case TYPE_6:
+                return builder
+                        .lx(Edge.ENGASTADO)
+                        .lx1(Edge.ENGASTADO)
+                        .ly(Edge.ENGASTADO)
+                        .ly1(Edge.ENGASTADO)
+                        .build();
+            default:
+                return builder.build();
         }
-
-        if (lx == Edge.SIMPLES && ly == Edge.ENGASTADO &&
-                lx1 == Edge.SIMPLES && ly1 == Edge.ENGASTADO) {
-            return MarcusType.TYPE_4;
-        }
-
-        if (lx == Edge.ENGASTADO && ly == Edge.SIMPLES &&
-                lx1 == Edge.ENGASTADO && ly1 == Edge.ENGASTADO) {
-            return MarcusType.TYPE_5;
-        }
-
-        return MarcusType.TYPE_6;
     }
 
 }
