@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <h:outputStylesheet library="css" name="spectre.min.css"/>
+    <h:outputStylesheet library="css" name="spectre-exp.min.css"/>
+    <h:outputStylesheet library="css" name="spectre-icons.min.css"/>
+    <style type="text/css">
+        .t1, .t2, .t3, .t4, .t5, .t6 {
+            border: 1px solid gray;
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+            display: inline-block;
+        }
+
+        .t2 {
+            border-left: 4px solid gray;
+        }
+
+        .t3 {
+            border-left: 4px solid gray;
+            border-top: 4px solid gray;
+        }
+
+        .t4 {
+            border-left: 4px solid gray;
+            border-right: 4px solid gray;
+        }
+
+        .t5 {
+            border: 4px solid gray;
+            border-right: 1px solid gray;
+        }
+
+        .t6 {
+            border: 4px solid gray;
+        }
+    </style>
+
+</h:head>
+
+<h:body>
+
+    <h3>Dados da laje</h3>
+
+    <h:form class="laje">
+
+        <div class="container">
+            <div class="columns">
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <label class="column col-4" for="lx">Lx</label>
+                        <p:inputText id="lx" type="number" value="${calculoMBean.laje.lx}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <label class="column col-4" for="ly">Ly</label>
+                        <p:inputText id="ly" type="number" value="${calculoMBean.laje.ly}"/>
+                    </div>
+                </div>
+
+                <div class="column col-12">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="contorno" value="Contorno"/>
+                        <h:selectOneRadio id="contorno" value="#{calculoMBean.laje.contorno}">
+                            <f:selectItem itemValue="TYPE_1" itemEscaped="false"
+                                          itemLabel="&lt;span class='t1'&gt;&lt;/span&gt;"/>
+                            <f:selectItem itemValue="TYPE_2" itemEscaped="false"
+                                          itemLabel="&lt;span class='t2'&gt;&lt;/span&gt;"/>
+                            <f:selectItem itemValue="TYPE_3" itemEscaped="false"
+                                          itemLabel="&lt;span class='t3'&gt;&lt;/span&gt;"/>
+                            <f:selectItem itemValue="TYPE_4" itemEscaped="false"
+                                          itemLabel="&lt;span class='t4'&gt;&lt;/span&gt;"/>
+                            <f:selectItem itemValue="TYPE_5" itemEscaped="false"
+                                          itemLabel="&lt;span class='t5'&gt;&lt;/span&gt;"/>
+                            <f:selectItem itemValue="TYPE_6" itemEscaped="false"
+                                          itemLabel="&lt;span class='t6'&gt;&lt;/span&gt;"/>
+                        </h:selectOneRadio>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="caa" value="Classe de Agressividade (CAA)"/>
+                        <p:selectOneRadio id="caa" value="#{calculoMBean.laje.caa}">
+                            <f:selectItem itemValue="I" itemLabel="I"/>
+                            <f:selectItem itemValue="II" itemLabel="II"/>
+                            <f:selectItem itemValue="III" itemLabel="III"/>
+                            <f:selectItem itemValue="IV" itemLabel="IV"/>
+                        </p:selectOneRadio>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="aco" value="Aço"/>
+                        <h:selectOneRadio id="aco" value="#{calculoMBean.laje.aco}">
+                            <f:selectItem itemValue="CA25" itemLabel="CA25"/>
+                            <f:selectItem itemValue="CA50" itemLabel="CA50"/>
+                            <f:selectItem itemValue="CA60" itemLabel="CA60"/>
+                        </h:selectOneRadio>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="h" value="Altura (cm)"/>
+                        <p:inputText id="h" type="number" value="#{calculoMBean.laje.altura}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="fck" value="Fck"/>
+                        <p:inputText id="fck" type="number" value="#{calculoMBean.laje.fck}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="e" value="Espessura concreto (mm)"/>
+                        <p:inputText id="e" type="number" value="#{calculoMBean.laje.e}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="earg" value="Espessura argamassa (mm)"/>
+                        <p:inputText id="earg" type="number" value="#{calculoMBean.laje.earg}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="emat" value="Espessura material (mm)"/>
+                        <p:inputText id="emat" type="number" value="#{calculoMBean.laje.emat}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <p:outputLabel class="column col-4" for="q" value="Carga acidental (kN/m^2)"/>
+                        <p:inputText id="q" value="#{calculoMBean.laje.q}" placeholder="0.00"/>
+                    </div>
+                </div>
+
+                <h4>Pesos especificos</h4>
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <label class="column col-4" for="concretoArmado">Concreto armado (kN/m<sup>2</sup>)</label>
+                        <p:inputText id="concretoArmado" value="#{calculoMBean.laje.GConcreto}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <label class="column col-4" for="argamassa">Material (kN/m<sup>2</sup>)</label>
+                        <p:inputText id="argamassa" name="argamassa" value="#{calculoMBean.laje.GArg}"/>
+                    </div>
+                </div>
+
+                <div class="column col-3">
+                    <div class="columns" style="margin: 3px">
+                        <label class="column col-4" for="material">Material (kN/m<sup>2</sup>)</label>
+                        <p:inputText id="material" name="material" value="#{calculoMBean.laje.GMat}"/>
+                    </div>
+                </div>
+
+                <p:commandButton action="${calculoMBean.calcular}" value="Calcular" update="result">
+                </p:commandButton>
+
+            </div>
+        </div>
+
+        <p:panel id="result">
+            #{calculoMBean.resultado}
+        </p:panel>
+
+    </h:form>
+
+</h:body>
+
+</html>

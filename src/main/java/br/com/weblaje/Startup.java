@@ -1,5 +1,6 @@
 package br.com.weblaje;
 
+import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
 import java.io.File;

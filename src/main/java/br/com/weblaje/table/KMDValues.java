@@ -27,11 +27,18 @@ public class KMDValues {
     }
 
     public double getKs(Aco aco, double kmd) {
-        KMDData kmdData = this.kmdTable.get(kmd);
-        while (kmdData == null) {
-            kmd += 0.001;
+        KMDData kmdData = null;
+
+        do {
+
+            if (kmd > 0.408) {
+                throw new RuntimeException("KMD calculado incorretamente");
+            }
             kmdData = this.kmdTable.get(kmd);
-        }
+            kmd += 0.001;
+
+        } while (kmdData == null);
+
         if (aco == Aco.CA50) return kmdData.getCa50();
         if (aco == Aco.CA60) return kmdData.getCa60();
         return 0.0;
