@@ -13,7 +13,7 @@ public class Startup {
         String appBase = ".";
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(createTempDir());
-        tomcat.setPort(PORT);
+        tomcat.setPort(Integer.valueOf(System.getProperty("server.port", "8080")));
         tomcat.addWebapp("", new File("src/main/webapp").getAbsolutePath());
         tomcat.start();
         tomcat.getServer().await();
