@@ -67,33 +67,33 @@
                 <div class="form-group column col-12">
                     <h:inputHidden id="contorno" value="#{calculoMBean.laje.contorno}" required="true"/>
                     <h:outputLabel class="form-label" value="Contorno"/>
-                    <label class="form-radio">
+                    <label class="form-radio form-inline">
                         <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_1"
                                checked="checked"/>
                         <i class="form-icon"/>
                         <span class="t1"></span>
                     </label>
-                    <label class="form-radio">
+                    <label class="form-radio form-inline">
                         <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_2"/>
                         <i class="form-icon"/>
                         <span class="t2"></span>
                     </label>
-                    <label class="form-radio">
+                    <label class="form-radio form-inline">
                         <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_3"/>
                         <i class="form-icon"/>
                         <span class="t3"></span>
                     </label>
-                    <label class="form-radio">
+                    <label class="form-radio form-inline">
                         <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_4"/>
                         <i class="form-icon"/>
                         <span class="t4"></span>
                     </label>
-                    <label class="form-radio">
+                    <label class="form-radio form-inline">
                         <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_5"/>
                         <i class="form-icon"/>
                         <span class="t5"></span>
                     </label>
-                    <label class="form-radio">
+                    <label class="form-radio form-inline">
                         <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_6"/>
                         <i class="form-icon"/>
                         <span class="t6"></span>
@@ -196,7 +196,7 @@
                 <span class="column col-mx-auto"/>
 
                 <h:commandButton styleClass="column col-3 btn" action="${calculoMBean.calcular}" value="Calcular">
-                    <f:ajax render="result"/>
+                    <f:ajax execute="@form" render="result"/>
                 </h:commandButton>
 
             </div>
@@ -214,15 +214,17 @@
             var caa = document.getElementById("caa").value;
             var aco = document.getElementById("aco").value;
 
-            var element = document.querySelector("[value=" + contorno + "]");
+            var element = document.querySelector("[type=radio][value=" + contorno + "]");
             if (element)
-                element.checked = true;
-            element = document.querySelector("[value=" + caa + "]");
+                element.click();
+
+            element = document.querySelector("[type=radio][value=" + caa + "]");
             if (element)
-                element.checked = true;
-            element = document.querySelector("[value=" + aco + "]");
+                element.click();
+
+            element = document.querySelector("[type=radio][value=" + aco + "]");
             if (element)
-                element.checked = true;
+                element.click();
 
         })();
 

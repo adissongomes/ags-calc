@@ -1,5 +1,7 @@
 package br.com.weblaje;
 
+import br.com.weblaje.table.KMDValues;
+import br.com.weblaje.table.MarcusValues;
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
@@ -10,6 +12,11 @@ public class Startup {
     private static final int PORT = 8080;
 
     public static void main(String[] args) throws Exception {
+        // tables
+        KMDValues.getInstance();
+        MarcusValues.getInstance();
+
+        // server
         String appBase = ".";
         Tomcat tomcat = new Tomcat();
         tomcat.setBaseDir(createTempDir());

@@ -12,6 +12,8 @@ import lombok.Data;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import java.util.logging.Logger;
 
 @ManagedBean
 @RequestScoped
@@ -22,11 +24,14 @@ public class CalculoMBean {
     private String resultado;
 
     public CalculoMBean() {
+        Logger.getGlobal().info("CalculoMBean ...");
         this.laje = new LajeDTO();
     }
 
     public void calcular() {
         Limites limites = Limites.buildLimites(MarcusType.valueOf(laje.getContorno()));
+
+        Logger.getGlobal().info("CalculoMBean#calcular");
 
         Laje l = Laje.builder()
                 .lx(laje.getLx())
