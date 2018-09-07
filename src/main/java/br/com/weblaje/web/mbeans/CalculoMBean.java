@@ -5,7 +5,6 @@ import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Limites;
 import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
-import br.com.weblaje.table.MarcusValues;
 import br.com.weblaje.table.MarcusValues.MarcusType;
 import br.com.weblaje.web.LajeDTO;
 import com.google.gson.Gson;

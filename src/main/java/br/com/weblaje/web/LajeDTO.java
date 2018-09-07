@@ -10,7 +10,7 @@ public class LajeDTO {
     private double lx = 4;
     private double ly = 5;
     private double altura = 10;
-    private String contorno = "TYPE_1";
+    private String contorno = "TYPE_3";
     private String caa = "II";
     private String aco = "CA50";
     private int fck = 25;

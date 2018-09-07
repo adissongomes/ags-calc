@@ -49,144 +49,195 @@
 
     <h3>Dados da laje</h3>
 
-    <h:form class="laje">
+    <h:form class="laje" prependId="false">
 
         <div class="container">
             <div class="columns">
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <label class="column col-4" for="lx">Lx</label>
-                        <p:inputText id="lx" type="number" value="${calculoMBean.laje.lx}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <label class="form-label" for="lx">Lx</label>
+                    <h:inputText id="lx" type="number" value="${calculoMBean.laje.lx}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <label class="column col-4" for="ly">Ly</label>
-                        <p:inputText id="ly" type="number" value="${calculoMBean.laje.ly}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <label class="form-label" for="ly">Ly</label>
+                    <h:inputText id="ly" type="number" value="${calculoMBean.laje.ly}"/>
                 </div>
 
-                <div class="column col-12">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="contorno" value="Contorno"/>
-                        <h:selectOneRadio id="contorno" value="#{calculoMBean.laje.contorno}">
-                            <f:selectItem itemValue="TYPE_1" itemEscaped="false"
-                                          itemLabel="&lt;span class='t1'&gt;&lt;/span&gt;"/>
-                            <f:selectItem itemValue="TYPE_2" itemEscaped="false"
-                                          itemLabel="&lt;span class='t2'&gt;&lt;/span&gt;"/>
-                            <f:selectItem itemValue="TYPE_3" itemEscaped="false"
-                                          itemLabel="&lt;span class='t3'&gt;&lt;/span&gt;"/>
-                            <f:selectItem itemValue="TYPE_4" itemEscaped="false"
-                                          itemLabel="&lt;span class='t4'&gt;&lt;/span&gt;"/>
-                            <f:selectItem itemValue="TYPE_5" itemEscaped="false"
-                                          itemLabel="&lt;span class='t5'&gt;&lt;/span&gt;"/>
-                            <f:selectItem itemValue="TYPE_6" itemEscaped="false"
-                                          itemLabel="&lt;span class='t6'&gt;&lt;/span&gt;"/>
-                        </h:selectOneRadio>
-                    </div>
+                <div class="form-group column col-12">
+                    <h:inputHidden id="contorno" value="#{calculoMBean.laje.contorno}" required="true"/>
+                    <h:outputLabel class="form-label" value="Contorno"/>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_1"
+                               checked="checked"/>
+                        <i class="form-icon"/>
+                        <span class="t1"></span>
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_2"/>
+                        <i class="form-icon"/>
+                        <span class="t2"></span>
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_3"/>
+                        <i class="form-icon"/>
+                        <span class="t3"></span>
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_4"/>
+                        <i class="form-icon"/>
+                        <span class="t4"></span>
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_5"/>
+                        <i class="form-icon"/>
+                        <span class="t5"></span>
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_6"/>
+                        <i class="form-icon"/>
+                        <span class="t6"></span>
+                    </label>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="caa" value="Classe de Agressividade (CAA)"/>
-                        <p:selectOneRadio id="caa" value="#{calculoMBean.laje.caa}">
-                            <f:selectItem itemValue="I" itemLabel="I"/>
-                            <f:selectItem itemValue="II" itemLabel="II"/>
-                            <f:selectItem itemValue="III" itemLabel="III"/>
-                            <f:selectItem itemValue="IV" itemLabel="IV"/>
-                        </p:selectOneRadio>
-                    </div>
+                <div class="form-group column col-6 col-md-12">
+                    <h:inputHidden id="caa" value="#{calculoMBean.laje.caa}" required="true"/>
+                    <h:outputLabel class="form-label" for="caa" value="Classe de Agressividade (CAA)"/>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraCAA(this.value)" name="caa" value="I"/>
+                        <i class="form-icon"/>
+                        I
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraCAA(this.value)" name="caa" value="II"
+                               checked="checked"/>
+                        <i class="form-icon"/>
+                        II
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraCAA(this.value)" name="caa" value="III"/>
+                        <i class="form-icon"/>
+                        III
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" onselect="alteraCAA(this.value)" name="caa" value="IV"/>
+                        <i class="form-icon"/>
+                        IV
+                    </label>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="aco" value="Aço"/>
-                        <h:selectOneRadio id="aco" value="#{calculoMBean.laje.aco}">
-                            <f:selectItem itemValue="CA25" itemLabel="CA25"/>
-                            <f:selectItem itemValue="CA50" itemLabel="CA50"/>
-                            <f:selectItem itemValue="CA60" itemLabel="CA60"/>
-                        </h:selectOneRadio>
-                    </div>
+                <div class="form-group column col-6 col-md-12">
+                    <h:inputHidden id="aco" value="#{calculoMBean.laje.aco}" required="true"/>
+                    <h:outputLabel class="column col-2" for="aco" value="Aço"/>
+                    <label class="form-radio">
+                        <input type="radio" name="aco" value="CA25" onselect="alteraAco(this.value)"/>
+                        <i class="form-icon"/>
+                        CA25
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" name="aco" value="CA50" onselect="alteraAco(this.value)"/>
+                        <i class="form-icon"/>
+                        CA50
+                    </label>
+                    <label class="form-radio">
+                        <input type="radio" name="aco" value="CA60" onselect="alteraAco(this.value)"/>
+                        <i class="form-icon"/>
+                        CA60
+                    </label>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="h" value="Altura (cm)"/>
-                        <p:inputText id="h" type="number" value="#{calculoMBean.laje.altura}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <h:outputLabel class="form-label" for="h" value="Altura (cm)"/>
+                    <h:inputText id="h" type="number" value="#{calculoMBean.laje.altura}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="fck" value="Fck"/>
-                        <p:inputText id="fck" type="number" value="#{calculoMBean.laje.fck}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <h:outputLabel class="form-label" for="fck" value="Fck"/>
+                    <h:inputText id="fck" type="number" value="#{calculoMBean.laje.fck}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="e" value="Espessura concreto (mm)"/>
-                        <p:inputText id="e" type="number" value="#{calculoMBean.laje.e}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <h:outputLabel class="form-label" for="e" value="Espessura concreto (mm)"/>
+                    <h:inputText id="e" type="number" value="#{calculoMBean.laje.e}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="earg" value="Espessura argamassa (mm)"/>
-                        <p:inputText id="earg" type="number" value="#{calculoMBean.laje.earg}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <h:outputLabel class="form-label" for="earg" value="Espessura argamassa (mm)"/>
+                    <h:inputText id="earg" type="number" value="#{calculoMBean.laje.earg}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="emat" value="Espessura material (mm)"/>
-                        <p:inputText id="emat" type="number" value="#{calculoMBean.laje.emat}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <h:outputLabel class="form-label" for="emat" value="Espessura material (mm)"/>
+                    <h:inputText id="emat" type="number" value="#{calculoMBean.laje.emat}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <p:outputLabel class="column col-4" for="q" value="Carga acidental (kN/m^2)"/>
-                        <p:inputText id="q" value="#{calculoMBean.laje.q}" placeholder="0.00"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <h:outputLabel class="form-label" for="q" value="Carga acidental (kN/m^2)"/>
+                    <h:inputText id="q" value="#{calculoMBean.laje.q}" placeholder="0.00"/>
                 </div>
 
-                <h4>Pesos especificos</h4>
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <label class="column col-4" for="concretoArmado">Concreto armado (kN/m<sup>2</sup>)</label>
-                        <p:inputText id="concretoArmado" value="#{calculoMBean.laje.GConcreto}"/>
-                    </div>
+                <h4 class="column col-12">Pesos especificos</h4>
+
+                <div class="form-group column col-3 col-md-12">
+                    <label class="form-label" for="concretoArmado">Concreto armado (kN/m<sup>2</sup>)</label>
+                    <h:inputText id="concretoArmado" value="#{calculoMBean.laje.GConcreto}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <label class="column col-4" for="argamassa">Material (kN/m<sup>2</sup>)</label>
-                        <p:inputText id="argamassa" name="argamassa" value="#{calculoMBean.laje.GArg}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <label class="form-label" for="argamassa">Material (kN/m<sup>2</sup>)</label>
+                    <h:inputText id="argamassa" name="argamassa" value="#{calculoMBean.laje.GArg}"/>
                 </div>
 
-                <div class="column col-3">
-                    <div class="columns" style="margin: 3px">
-                        <label class="column col-4" for="material">Material (kN/m<sup>2</sup>)</label>
-                        <p:inputText id="material" name="material" value="#{calculoMBean.laje.GMat}"/>
-                    </div>
+                <div class="form-group column col-3 col-md-12">
+                    <label class="form-label" for="material">Material (kN/m<sup>2</sup>)</label>
+                    <h:inputText id="material" name="material" value="#{calculoMBean.laje.GMat}"/>
                 </div>
 
-                <p:commandButton action="${calculoMBean.calcular}" value="Calcular" update="result">
-                </p:commandButton>
+                <span class="column col-mx-auto"/>
+
+                <h:commandButton styleClass="column col-3 btn" action="${calculoMBean.calcular}" value="Calcular">
+                    <f:ajax render="result"/>
+                </h:commandButton>
 
             </div>
         </div>
 
-        <p:panel id="result">
+        <p:panel id="result" style="margin-top: 10px;">
             #{calculoMBean.resultado}
         </p:panel>
 
     </h:form>
 
+    <script type="application/javascript">
+        (function () {
+            var contorno = document.getElementById("contorno").value;
+            var caa = document.getElementById("caa").value;
+            var aco = document.getElementById("aco").value;
+
+            var element = document.querySelector("[value=" + contorno + "]");
+            if (element)
+                element.checked = true;
+            element = document.querySelector("[value=" + caa + "]");
+            if (element)
+                element.checked = true;
+            element = document.querySelector("[value=" + aco + "]");
+            if (element)
+                element.checked = true;
+
+        })();
+
+        function alteraContorno(value) {
+            document.getElementById("contorno").value = value;
+        }
+
+        function alteraCAA(value) {
+            document.getElementById("caa").value = value;
+        }
+
+        function alteraAco(value) {
+            document.getElementById("aco").value = value;
+        }
+    </script>
 </h:body>
 
 </html>
