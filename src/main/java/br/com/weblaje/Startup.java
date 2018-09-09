@@ -1,8 +1,8 @@
 package br.com.weblaje;
 
+import br.com.weblaje.table.AreaAcoValues;
 import br.com.weblaje.table.KMDValues;
 import br.com.weblaje.table.MarcusValues;
-import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
 
 import java.io.File;
@@ -15,6 +15,7 @@ public class Startup {
         // tables
         KMDValues.getInstance();
         MarcusValues.getInstance();
+        AreaAcoValues.getInstance();
 
         // server
         String appBase = ".";

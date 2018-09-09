@@ -4,6 +4,7 @@ import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Limites;
 import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
+import br.com.weblaje.table.AreaAcoValues;
 import br.com.weblaje.table.KMDValues;
 import br.com.weblaje.table.MarcusValues;
 
@@ -13,6 +14,7 @@ public class Main {
 
         MarcusValues values = MarcusValues.getInstance();
         KMDValues kmdValues = KMDValues.getInstance();
+        AreaAcoValues acoValues = AreaAcoValues.getInstance();
 
         Laje laje = Laje.builder()
                 .lx(4)
