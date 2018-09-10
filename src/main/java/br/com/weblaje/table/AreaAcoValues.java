@@ -22,7 +22,35 @@ public class AreaAcoValues {
     }
 
     public AreaAcoData getData(double as) {
-        return acoTable.get(as);
+        double eligible = as;
+        AreaAcoData dataTemp = null;
+        List<AreaAcoData> eligebles = new ArrayList<>();
+
+        for(Double k: acoTable.keySet()) {
+            double absTemp = k - as;
+            AreaAcoData d = acoTable.get(k);
+            if (absTemp > 0 && absTemp <= 0.1 && d.getEspacamento() >= 8) {
+                eligebles.add(d);
+
+            }
+        }
+
+        double abs = 99;
+        for(AreaAcoData d : eligebles) {
+            double absTemp = d.getAs() - as;
+            if (dataTemp == null) {
+                dataTemp = d;
+                abs = absTemp;
+                continue;
+            }
+
+            if (d.getEspacamento() < dataTemp.getEspacamento()) {
+                dataTemp = d;
+                abs = absTemp;
+            }
+        }
+
+        return dataTemp;
     }
 
     public static AreaAcoValues getInstance() {
@@ -31,11 +59,11 @@ public class AreaAcoValues {
     }
 
     private void readCvs() {
-        LOGGER.info("Carregando tabelas de KMD...");
+        LOGGER.info("Carregando tabelas da área do aço...");
 
         acoTable = processFile("/area-aco.csv");
 
-        LOGGER.info("Tabelas de KMD carregadas: " + acoTable.toString());
+        LOGGER.info("Tabelas da área do aço carregadas: " + acoTable.toString());
     }
 
     private HashMap<Double, AreaAcoData> processFile(String kmdFile) {
@@ -73,7 +101,7 @@ public class AreaAcoValues {
                     AreaAcoData areaAcoData = dataMap.get(value.getAs());
                     if (areaAcoData == null) {
                         dataMap.put(value.getAs(), value);
-                    } else if (areaAcoData.getDiametro() > value.getDiametro()) {
+                    } else if (value.getDiametro() < areaAcoData.getDiametro()) {
                         dataMap.put(value.getAs(), value);
                     }
                 }
@@ -92,11 +120,28 @@ public class AreaAcoValues {
     @NoArgsConstructor
     @AllArgsConstructor
     @Builder
-    public static class AreaAcoData {
+    public static class AreaAcoData implements Comparable<AreaAcoData> {
 
         private double as;
         private double espacamento;
         private double diametro;
 
+        @Override
+        public int compareTo(AreaAcoData o) {
+            if (o != null) {
+                return 1;
+            }
+
+            if (o.as > this.as &&
+                o.diametro > this.diametro &&
+                o.espacamento > this.espacamento)
+                return 1;
+            else if (o.as < this.as &&
+                    o.diametro < this.diametro &&
+                    o.espacamento < this.espacamento)
+                return -1;
+
+            return 0;
+        }
     }
 }

@@ -4,6 +4,9 @@ import br.com.weblaje.model.Armadura;
 import br.com.weblaje.model.Carregamento;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Momento;
+import br.com.weblaje.table.ASMinValues;
+import br.com.weblaje.table.AreaAcoValues;
+import br.com.weblaje.table.AreaAcoValues.AreaAcoData;
 import br.com.weblaje.table.KMDValues;
 import br.com.weblaje.table.MarcusValues;
 
@@ -82,6 +85,8 @@ public class Calculadora {
         // valor ks buscar na tabela conforme valor kmd
         double ks = KMDValues.getInstance().getKs(laje.getAco(), kmd); // 42.16
         double as = Double.valueOf(String.format("%.3f", md / (ks * d)));
+        // altura deve ser em centimetros
+        double asMin = ASMinValues.getInstance().getAsMin(laje.getAco(), laje.getFck()) * (laje.getAltura() * 100);
         Armadura armadura = Armadura.builder()
                 .d(d)
                 .fcd(fcd)
@@ -89,9 +94,12 @@ public class Calculadora {
                 .kmd(kmd)
                 .ks(ks)
                 .as(as)
+                .asMin(asMin)
                 .build();
         laje.setArmadura(armadura);
-        // nao sei o que fazer daqui :P
+
+        AreaAcoData data = AreaAcoValues.getInstance().getData(armadura.getMaiorAs());
+        laje.setDadosAco(data);
     }
 
 }

@@ -15,4 +15,8 @@ public class Armadura {
     private double as;
     private double asMin;
 
+    public double getMaiorAs() {
+        return as > asMin ? as : asMin;
+    }
+
 }

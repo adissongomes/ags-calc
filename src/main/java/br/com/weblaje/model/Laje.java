@@ -1,5 +1,7 @@
 package br.com.weblaje.model;
 
+import br.com.weblaje.table.AreaAcoValues;
+import br.com.weblaje.table.AreaAcoValues.AreaAcoData;
 import lombok.Builder;
 import lombok.Data;
 
@@ -9,7 +11,7 @@ import java.math.BigDecimal;
 @Builder
 public class Laje {
 
-    public enum CAA {
+	public enum CAA {
         I(20), II(25), III(35), IV(45);
         private int tamanho;
 
@@ -53,7 +55,7 @@ public class Laje {
 
     /**
      * NBR 6118
-     * 7cm, 10cm, 12cm
+     * 0.07m, 0.10m, 0.12m
      */
     private final double altura;
 
@@ -107,4 +109,6 @@ public class Laje {
     private Momento momento;
 
     private Armadura armadura;
+
+    private AreaAcoData dadosAco;
 }

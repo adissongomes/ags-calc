@@ -1,5 +1,6 @@
 package br.com.weblaje;
 
+import br.com.weblaje.table.ASMinValues;
 import br.com.weblaje.table.AreaAcoValues;
 import br.com.weblaje.table.KMDValues;
 import br.com.weblaje.table.MarcusValues;
@@ -16,6 +17,7 @@ public class Startup {
         KMDValues.getInstance();
         MarcusValues.getInstance();
         AreaAcoValues.getInstance();
+        ASMinValues.getInstance();
 
         // server
         String appBase = ".";
