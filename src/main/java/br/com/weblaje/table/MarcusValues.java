@@ -117,24 +117,6 @@ public final class MarcusValues {
             } catch (IllegalAccessException e) {
                 LOGGER.warning("Value cannot be defined: " + e.getMessage());
             }
-
-//            switch (fieldName) {
-//                case "cx":
-//                    cx = Double.parseDouble(value);
-//                    break;
-//                case "cy":
-//                    cy = Double.parseDouble(value);
-//                    break;
-//                case "ex":
-//                    ex = Double.parseDouble(value);
-//                    break;
-//                case "ey":
-//                    ey = Double.parseDouble(value);
-//                    break;
-//                case "kx":
-//                    kx = Double.parseDouble(value);
-//                    break;
-//            }
         }
     }
 

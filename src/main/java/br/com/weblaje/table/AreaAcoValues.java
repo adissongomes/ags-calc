@@ -29,9 +29,8 @@ public class AreaAcoValues {
         for(Double k: acoTable.keySet()) {
             double absTemp = k - as;
             AreaAcoData d = acoTable.get(k);
-            if (absTemp > 0 && absTemp <= 0.1 && d.getEspacamento() >= 8) {
+            if (absTemp > 0 && absTemp <= 0.1 && d.getEspacamento() >= 9 & d.getEspacamento() <= 27) {
                 eligebles.add(d);
-
             }
         }
 
@@ -99,9 +98,7 @@ public class AreaAcoValues {
 
                     // obtem menor diametro
                     AreaAcoData areaAcoData = dataMap.get(value.getAs());
-                    if (areaAcoData == null) {
-                        dataMap.put(value.getAs(), value);
-                    } else if (value.getDiametro() < areaAcoData.getDiametro()) {
+                    if (areaAcoData == null || value.getDiametro() < areaAcoData.getDiametro()) {
                         dataMap.put(value.getAs(), value);
                     }
                 }
