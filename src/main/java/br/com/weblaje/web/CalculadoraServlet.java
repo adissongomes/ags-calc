@@ -6,7 +6,6 @@ import br.com.weblaje.model.Laje.CAA;
 import br.com.weblaje.model.Limites;
 import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
-import br.com.weblaje.table.MarcusValues;
 import br.com.weblaje.table.MarcusValues.MarcusType;
 import com.google.gson.Gson;
 
@@ -58,12 +57,8 @@ public class CalculadoraServlet extends HttpServlet {
                         .material(gMat)
                         .build())
                 .build();
-        Calculadora c = new Calculadora(laje);
-
-        c.calculaLambda();
-        c.calculaCarga();
-        c.calculaMomentos();
-        c.calculaArmaduraFlexao();
+        Calculadora c = Calculadora.init(laje);
+        c.calcular();
 
         Gson gson = new Gson();
 

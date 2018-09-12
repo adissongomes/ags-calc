@@ -35,11 +35,8 @@ public class Main {
                 .limites(Limites.buildLimites(MarcusValues.MarcusType.TYPE_3))
                 .build();
 
-        Calculadora calculadora = new Calculadora(laje);
-        calculadora.calculaLambda();
-        calculadora.calculaCarga();
-        calculadora.calculaMomentos();
-        calculadora.calculaArmaduraFlexao();
+        Calculadora calculadora = Calculadora.init(laje);
+        calculadora.calcular();
 
         System.out.println(laje);
         System.out.println(laje.getCarregamento());

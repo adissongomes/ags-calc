@@ -8,11 +8,11 @@ import br.com.weblaje.service.Calculadora;
 import br.com.weblaje.table.MarcusValues.MarcusType;
 import br.com.weblaje.web.LajeDTO;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import lombok.Data;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.SessionScoped;
 import java.util.logging.Logger;
 
 @ManagedBean
@@ -51,14 +51,10 @@ public class CalculoMBean {
                         .material(laje.getGMat())
                         .build())
                 .build();
-        Calculadora c = new Calculadora(l);
+        Calculadora c = Calculadora.init(l);
+        c.calcular();
 
-        c.calculaLambda();
-        c.calculaCarga();
-        c.calculaMomentos();
-        c.calculaArmaduraFlexao();
-
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
         resultado = gson.toJson(l);
     }
 

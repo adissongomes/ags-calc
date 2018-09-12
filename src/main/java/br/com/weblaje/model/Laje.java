@@ -110,5 +110,11 @@ public class Laje {
 
     private Armadura armadura;
 
-    private AreaAcoData dadosAco;
+    private AreaAcoData dadosAcoLx;
+
+    private AreaAcoData dadosAcoLy;
+
+    private String n1;
+
+    private String n2;
 }
