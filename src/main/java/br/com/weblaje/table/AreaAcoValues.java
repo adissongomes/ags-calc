@@ -49,7 +49,11 @@ public class AreaAcoValues {
             }
         }
 
-        return dataTemp;
+        return AreaAcoData.builder()
+                .as(dataTemp.getAs())
+                .diametro(dataTemp.getDiametro())
+                .espacamento(dataTemp.getEspacamento())
+                .build();
     }
 
     public static AreaAcoValues getInstance() {
@@ -122,6 +126,8 @@ public class AreaAcoValues {
         private double as;
         private double espacamento;
         private double diametro;
+        private int numeroBarras;
+        private int comprimentoBarras;
 
         @Override
         public int compareTo(AreaAcoData o) {

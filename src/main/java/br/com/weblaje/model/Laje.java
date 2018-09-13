@@ -53,6 +53,8 @@ public class Laje {
 
     private final double ly;
 
+    private boolean balanco;
+
     /**
      * NBR 6118
      * 0.07m, 0.10m, 0.12m
@@ -110,9 +112,9 @@ public class Laje {
 
     private Armadura armadura;
 
-    private AreaAcoData dadosAcoLx;
+    private AreaAcoData dadosArmaduraLx;
 
-    private AreaAcoData dadosAcoLy;
+    private AreaAcoData dadosArmaduraLy;
 
     private String n1;
 

@@ -18,7 +18,48 @@ public class Main {
         AreaAcoValues acoValues = AreaAcoValues.getInstance();
         ASMinValues asMinValues = ASMinValues.getInstance();
 
-        Laje laje = Laje.builder()
+        Laje laje = getLajeDuplaDirecao();
+
+        Calculadora c = Calculadora.init(laje);
+        c.calcular();
+
+        System.out.println(laje.getN1());
+        System.out.println(laje.getN2());
+        System.out.println(laje.getCarregamento());
+        System.out.println(laje.getMomento());
+
+        laje = getLajeUnicaDirecao();
+        c = Calculadora.init(laje);
+        c.calcular();
+
+        System.out.println(laje.getN1());
+        System.out.println(laje.getN2());
+        System.out.println(laje.getCarregamento());
+        System.out.println(laje.getMomento());
+
+    }
+
+    private static Laje getLajeUnicaDirecao() {
+        return Laje.builder()
+                .lx(3)
+                .ly(7)
+                .altura(.1)
+                .caa(Laje.CAA.II)
+                .fck(25)
+                .espessuraConcreto(.02)
+                .espessuraArgamassa(.02)
+                .espessuraMaterial(.01)
+                .pesosEspecificos(PesosEspecificos.builder()
+                        .concretoArmado(25)
+                        .argamassa(21)
+                        .material(18)
+                        .build())
+                .limites(Limites.buildLimites(MarcusValues.MarcusType.TYPE_2))
+                .build();
+    }
+
+    private static Laje getLajeDuplaDirecao() {
+        return Laje.builder()
                 .lx(4)
                 .ly(5)
                 .altura(.1)
@@ -34,14 +75,6 @@ public class Main {
                         .build())
                 .limites(Limites.buildLimites(MarcusValues.MarcusType.TYPE_3))
                 .build();
-
-        Calculadora calculadora = Calculadora.init(laje);
-        calculadora.calcular();
-
-        System.out.println(laje);
-        System.out.println(laje.getCarregamento());
-        System.out.println(laje.getMomento());
-
     }
 
 }
