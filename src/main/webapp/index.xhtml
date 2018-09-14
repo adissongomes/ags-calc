@@ -195,20 +195,21 @@
 
                 <span class="column col-mx-auto"/>
 
-                <h:commandButton styleClass="column col-3 btn" action="${calculoMBean.calcular}" value="Calcular">
+                <h:commandButton id="calculate" styleClass="column col-3 btn" action="${calculoMBean.calcular}" value="Calcular">
                     <f:ajax execute="@form" render="result"/>
                 </h:commandButton>
 
             </div>
         </div>
 
-        <p:panel id="result" style="margin-top: 10px;">
-            #{calculoMBean.resultado}
-        </p:panel>
+        <h:inputHidden id="result" value="#{calculoMBean.resultado}"/>
+
+        <canvas id="canvas" width="400" height="200"></canvas>
 
     </h:form>
 
     <script type="application/javascript">
+        //<![CDATA[
         (function () {
             var contorno = document.getElementById("contorno").value;
             var caa = document.getElementById("caa").value;
@@ -226,6 +227,19 @@
             if (element)
                 element.click();
 
+            jsf.ajax.addOnEvent(function(event) {
+
+               try {
+                   if (event.status === 'success' && event.source.id === 'calculate') {
+                       var resultJSON = JSON.parse(document.getElementById("result").value);
+                       desenhaRepresantacao(resultJSON.n1, resultJSON.n2);
+                   }
+               } catch (exception) {
+                   console.err(exception);
+                   desenhaRepresantacao(0, 0);
+               }
+            });
+
         })();
 
         function alteraContorno(value) {
@@ -239,6 +253,33 @@
         function alteraAco(value) {
             document.getElementById("aco").value = value;
         }
+
+        function desenhaRepresantacao(n1, n2) {
+            console.log('Representacao para laje...');
+            console.log('n1: ' + n1);
+            console.log('n2: ' + n2);
+
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.strokeRect(40, 40, 100, 120);
+
+            ctx.beginPath();
+            // n1
+            ctx.moveTo(105, 40);
+            ctx.lineTo(105, 160);
+            // n2
+            ctx.moveTo(40, 120);
+            ctx.lineTo(140, 120);
+            ctx.closePath();
+            ctx.stroke();
+
+            ctx.font = '10pt sans-serif';
+            ctx.fillText(n1, 105, 30);
+            ctx.fillText(n2, 150, 120);
+        }
+        //]]>
     </script>
 </h:body>
 
