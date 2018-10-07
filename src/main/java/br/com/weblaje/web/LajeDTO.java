@@ -16,7 +16,7 @@ public class LajeDTO {
     private int fck = 25;
     private double q = 1.5;
     private double gConcreto = 25;
-    private double gArg = 21;
+    private double gArg = 20;
     private double gMat = 18;
     private double e = 25;
     private double earg = 21;
