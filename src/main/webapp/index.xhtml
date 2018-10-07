@@ -156,18 +156,18 @@
                     <h:inputText id="fck" type="number" value="#{calculoMBean.laje.fck}"/>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="e" value="Espessura concreto (mm)"/>
-                    <h:inputText id="e" type="number" value="#{calculoMBean.laje.e}"/>
-                </div>
+                <!--<div class="form-group column col-3 col-md-12">-->
+                    <!--<h:outputLabel class="form-label" for="e" value="Espessura concreto (mm)"/>-->
+                    <!--<h:inputText id="e" type="number" value="#{calculoMBean.laje.e}"/>-->
+                <!--</div>-->
 
                 <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="earg" value="Espessura argamassa (mm)"/>
+                    <h:outputLabel class="form-label" for="earg" value="Esp. cam de regularização (mm)"/>
                     <h:inputText id="earg" type="number" value="#{calculoMBean.laje.earg}"/>
                 </div>
 
                 <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="emat" value="Espessura material (mm)"/>
+                    <h:outputLabel class="form-label" for="emat" value="Esp. do piso (mm)"/>
                     <h:inputText id="emat" type="number" value="#{calculoMBean.laje.emat}"/>
                 </div>
 
@@ -184,12 +184,12 @@
                 </div>
 
                 <div class="form-group column col-3 col-md-12">
-                    <label class="form-label" for="argamassa">Argamassa (kN/m<sup>2</sup>)</label>
+                    <label class="form-label" for="argamassa">Camada de regularização (kN/m<sup>2</sup>)</label>
                     <h:inputText id="argamassa" name="argamassa" value="#{calculoMBean.laje.GArg}"/>
                 </div>
 
                 <div class="form-group column col-3 col-md-12">
-                    <label class="form-label" for="material">Material (kN/m<sup>2</sup>)</label>
+                    <label class="form-label" for="material">Piso (kN/m<sup>2</sup>)</label>
                     <h:inputText id="material" name="material" value="#{calculoMBean.laje.GMat}"/>
                 </div>
 
