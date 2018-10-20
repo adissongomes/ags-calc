@@ -15,6 +15,8 @@
         #memorial-table, #memorial-table td { border: 1px gray solid; padding: 5px; }
         #memorial-table td:nth-child(1) { width: 5em; }
 
+        .custom-label { font-size: 9pt; height: 50px;}
+
         .t1, .t2, .t3, .t4, .t5, .t6 {
             border: 1px solid gray;
             width: 30px;
@@ -58,19 +60,19 @@
         <div class="container">
             <div class="columns">
 
-                <div class="form-group column col-3 col-md-12">
-                    <label class="form-label" for="lx">Lx</label>
-                    <h:inputText id="lx" type="number" value="${calculoMBean.laje.lx}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <label class="form-label custom-label" for="lx">Lx</label>
+                    <h:inputText id="lx" type="number" value="${calculoMBean.laje.lx}" size="8"/>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <label class="form-label" for="ly">Ly</label>
-                    <h:inputText id="ly" type="number" value="${calculoMBean.laje.ly}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <label class="form-label custom-label" for="ly">Ly</label>
+                    <h:inputText id="ly" type="number" value="${calculoMBean.laje.ly}" size="8"/>
                 </div>
 
-                <div class="form-group column col-12">
+                <div class="form-group column col-4 col-md-12">
                     <h:inputHidden id="contorno" value="#{calculoMBean.laje.contorno}" required="true"/>
-                    <h:outputLabel class="form-label" value="Contorno"/>
+                    <h:outputLabel class="form-label custom-label" value="Contorno"/>
                     <label class="form-radio form-inline">
                         <input type="radio" onselect="alteraContorno(this.value)" name="contorno" value="TYPE_1"
                                checked="checked"/>
@@ -104,9 +106,11 @@
                     </label>
                 </div>
 
-                <div class="form-group column col-6 col-md-12">
+                <span class="column col-4 col-ml-auto hide-md"/>
+
+                <div class="form-group column col-2 col-md-12">
                     <h:inputHidden id="caa" value="#{calculoMBean.laje.caa}" required="true"/>
-                    <h:outputLabel class="form-label" for="caa" value="Classe de Agressividade (CAA)"/>
+                    <h:outputLabel class="form-label custom-label" for="caa" value="Classe de Agressividade (CAA)"/>
                     <label class="form-radio">
                         <input type="radio" onselect="alteraCAA(this.value)" name="caa" value="I"/>
                         <i class="form-icon"/>
@@ -130,9 +134,9 @@
                     </label>
                 </div>
 
-                <div class="form-group column col-6 col-md-12">
+                <div class="form-group column col-2 col-md-12">
                     <h:inputHidden id="aco" value="#{calculoMBean.laje.aco}" required="true"/>
-                    <h:outputLabel class="column col-2" for="aco" value="Aço"/>
+                    <h:outputLabel class="form-label custom-label" for="aco" value="Aço"/>
                     <label class="form-radio">
                         <input type="radio" name="aco" value="CA25" onselect="alteraAco(this.value)"/>
                         <i class="form-icon"/>
@@ -150,56 +154,58 @@
                     </label>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="h" value="Altura (cm)"/>
-                    <h:inputText id="h" type="number" value="#{calculoMBean.laje.altura}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <h:outputLabel class="form-label custom-label" for="h" value="Altura (cm)"/>
+                    <h:inputText id="h" type="number" value="#{calculoMBean.laje.altura}" size="8"/>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="fck" value="Fck"/>
-                    <h:inputText id="fck" type="number" value="#{calculoMBean.laje.fck}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <h:outputLabel class="form-label custom-label" for="fck" value="Fck"/>
+                    <h:inputText id="fck" type="number" value="#{calculoMBean.laje.fck}" size="8"/>
                 </div>
+
+                <span class="column col-4 hide-md"/>
 
                 <!--<div class="form-group column col-3 col-md-12">-->
-                    <!--<h:outputLabel class="form-label" for="e" value="Espessura concreto (mm)"/>-->
+                    <!--<h:outputLabel class="form-label custom-label" for="e" value="Espessura concreto (mm)"/>-->
                     <!--<h:inputText id="e" type="number" value="#{calculoMBean.laje.e}"/>-->
                 <!--</div>-->
 
-                <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="earg" value="Esp. cam de regularização (mm)"/>
-                    <h:inputText id="earg" type="number" value="#{calculoMBean.laje.earg}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <h:outputLabel class="form-label custom-label" for="earg" value="Esp. cam de regularização (mm)"/>
+                    <h:inputText id="earg" type="number" value="#{calculoMBean.laje.earg}" size="8"/>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="emat" value="Espessura do piso (mm)"/>
-                    <h:inputText id="emat" type="number" value="#{calculoMBean.laje.emat}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <h:outputLabel class="form-label custom-label" for="emat" value="Espessura do piso (mm)"/>
+                    <h:inputText id="emat" type="number" value="#{calculoMBean.laje.emat}" size="8"/>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <h:outputLabel class="form-label" for="q" value="q - Carga acidental (kN/m^2)"/>
-                    <h:inputText id="q" value="#{calculoMBean.laje.q}" placeholder="0.00"/>
+                <div class="form-group column col-2 col-md-12">
+                    <h:outputLabel class="form-label custom-label" for="q" value="q - Carga acidental (kN/m^2)"/>
+                    <h:inputText id="q" value="#{calculoMBean.laje.q}" placeholder="0.00" size="8"/>
                 </div>
 
                 <h4 class="column col-12">Pesos especificos</h4>
 
-                <div class="form-group column col-3 col-md-12">
-                    <label class="form-label" for="concretoArmado">Concreto armado (kN/m<sup>2</sup>)</label>
-                    <h:inputText id="concretoArmado" value="#{calculoMBean.laje.GConcreto}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <label class="form-label custom-label" for="concretoArmado">Concreto armado (kN/m<sup>2</sup>)</label>
+                    <h:inputText id="concretoArmado" value="#{calculoMBean.laje.GConcreto}" size="8"/>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <label class="form-label" for="argamassa">Camada de regularização (kN/m<sup>2</sup>)</label>
-                    <h:inputText id="argamassa" name="argamassa" value="#{calculoMBean.laje.GArg}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <label class="form-label custom-label" for="argamassa">Camada de regularização (kN/m<sup>2</sup>)</label>
+                    <h:inputText id="argamassa" name="argamassa" value="#{calculoMBean.laje.GArg}" size="8"/>
                 </div>
 
-                <div class="form-group column col-3 col-md-12">
-                    <label class="form-label" for="material">Piso (kN/m<sup>2</sup>)</label>
-                    <h:inputText id="material" name="material" value="#{calculoMBean.laje.GMat}"/>
+                <div class="form-group column col-2 col-md-12">
+                    <label class="form-label custom-label" for="material">Piso (kN/m<sup>2</sup>)</label>
+                    <h:inputText id="material" name="material" value="#{calculoMBean.laje.GMat}" size="8"/>
                 </div>
 
-                <span class="column col-mx-auto"/>
+                <span class="column col-6 hide-md"/>
 
-                <h:commandButton id="calculate" styleClass="column col-3 btn" action="${calculoMBean.calcular}" value="Calcular">
+                <h:commandButton id="calculate" styleClass="column col-2 col-md-12 btn" action="${calculoMBean.calcular}" value="Calcular">
                     <f:ajax execute="@form" render="result memorial"/>
                 </h:commandButton>
 
