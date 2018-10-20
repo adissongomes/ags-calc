@@ -11,6 +11,10 @@
     <h:outputStylesheet library="css" name="spectre-exp.min.css"/>
     <h:outputStylesheet library="css" name="spectre-icons.min.css"/>
     <style type="text/css">
+        #memorial-table { border-collapse: collapse; }
+        #memorial-table, #memorial-table td { border: 1px gray solid; padding: 5px; }
+        #memorial-table td:nth-child(1) { width: 5em; }
+
         .t1, .t2, .t3, .t4, .t5, .t6 {
             border: 1px solid gray;
             width: 30px;
@@ -196,7 +200,7 @@
                 <span class="column col-mx-auto"/>
 
                 <h:commandButton id="calculate" styleClass="column col-3 btn" action="${calculoMBean.calcular}" value="Calcular">
-                    <f:ajax execute="@form" render="result"/>
+                    <f:ajax execute="@form" render="result memorial"/>
                 </h:commandButton>
 
             </div>
@@ -204,13 +208,85 @@
 
         <h:inputHidden id="result" value="#{calculoMBean.resultado}"/>
 
-        <canvas id="canvas" width="400" height="200"></canvas>
+        <p:dialog id="memorial-dialog" widgetVar="memorial" header="Resultados" modal="true">
+
+            <canvas id="canvas" width="400" height="200"></canvas>
+
+            <table id="memorial-table">
+
+                <tr>
+                    <td>Lx</td>
+                    <td id="lx-col"></td>
+                </tr>
+
+                <tr>
+                    <td>Ly</td>
+                    <td id="ly-col"></td>
+                </tr>
+
+                <tr>
+                    <td>Mx</td>
+                    <td id="mx-col"></td>
+                </tr>
+
+                <tr>
+                    <td>My</td>
+                    <td id="my-col"></td>
+                </tr>
+
+                <tr>
+                    <td>P</td>
+                    <td id="p-col"></td>
+                </tr>
+
+                <tr>
+                    <td>N1</td>
+                    <td id="n1-col"></td>
+                </tr>
+
+                <tr>
+                    <td>N2</td>
+                    <td id="n2-col"></td>
+                </tr>
+
+            </table>
+
+        </p:dialog>
+
 
     </h:form>
 
     <script type="application/javascript">
         //<![CDATA[
         (function () {
+            loadSelectValues();
+
+            jsf.ajax.addOnEvent(function(event) {
+
+               try {
+                   if (event.status === 'success' && event.source.id === 'calculate') {
+                       var data = JSON.parse(document.getElementById("result").value);
+                       desenhaRepresantacao(data.n1, data.n2);
+
+                       document.getElementById("lx-col").innerText = data.lx;
+                       document.getElementById("ly-col").innerText = data.ly;
+                       document.getElementById("mx-col").innerText = data.momento.mx;
+                       document.getElementById("my-col").innerText = data.momento.my;
+                       document.getElementById("p-col").innerText = data.carregamento.p;
+                       document.getElementById("n1-col").innerText = data.n1;
+                       document.getElementById("n2-col").innerText = data.n2;
+
+                       PF('memorial').show();
+                   }
+               } catch (exception) {
+                   console.warn(exception);
+                   desenhaRepresantacao(0, 0);
+               }
+            });
+
+        })();
+
+        function loadSelectValues() {
             var contorno = document.getElementById("contorno").value;
             var caa = document.getElementById("caa").value;
             var aco = document.getElementById("aco").value;
@@ -226,21 +302,7 @@
             element = document.querySelector("[type=radio][value=" + aco + "]");
             if (element)
                 element.click();
-
-            jsf.ajax.addOnEvent(function(event) {
-
-               try {
-                   if (event.status === 'success' && event.source.id === 'calculate') {
-                       var resultJSON = JSON.parse(document.getElementById("result").value);
-                       desenhaRepresantacao(resultJSON.n1, resultJSON.n2);
-                   }
-               } catch (exception) {
-                   console.err(exception);
-                   desenhaRepresantacao(0, 0);
-               }
-            });
-
-        })();
+        }
 
         function alteraContorno(value) {
             document.getElementById("contorno").value = value;
