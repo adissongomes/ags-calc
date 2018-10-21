@@ -1,9 +1,6 @@
 package br.com.weblaje;
 
-import br.com.weblaje.table.ASMinValues;
-import br.com.weblaje.table.AreaAcoValues;
-import br.com.weblaje.table.KMDValues;
-import br.com.weblaje.table.MarcusValues;
+import br.com.weblaje.table.*;
 import org.apache.catalina.startup.Tomcat;
 
 import java.io.File;
@@ -18,6 +15,7 @@ public class Startup {
         MarcusValues.getInstance();
         AreaAcoValues.getInstance();
         ASMinValues.getInstance();
+        FlechaValues.getInstance();
 
         // server
         String appBase = ".";

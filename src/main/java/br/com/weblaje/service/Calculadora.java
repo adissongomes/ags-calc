@@ -2,6 +2,7 @@ package br.com.weblaje.service;
 
 import br.com.weblaje.model.Armadura;
 import br.com.weblaje.model.Carregamento;
+import br.com.weblaje.model.Flecha;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.table.ASMinValues;
 import br.com.weblaje.table.AreaAcoValues;
@@ -38,6 +39,7 @@ public abstract class Calculadora {
         calculaCarga();
         calculaMomentos();
         calculaArmaduraFlexao();
+        calculaFlechaImediata();
     }
 
     /**
@@ -71,6 +73,24 @@ public abstract class Calculadora {
 
     protected AreaAcoValues.AreaAcoData calculaArmaduraLy(double d, double fcd) {
         return calculaArmaduraParaEixo(d, fcd, laje.getMomento().getMy());
+    }
+
+    protected void calculaFlechaImediata() {
+
+        Flecha.FlechaBuilder flexaBuilder = Flecha.builder();
+
+        double fckInf = 0.7 * 0.3 * Math.pow(laje.getFck(), 2/3) * 1000;
+        double i = 1 * laje.getAltura() / 12;
+        double y = laje.getAltura() / 2;
+        double mr = (1.5 * fckInf * i) / y;
+
+        flexaBuilder.fckInf(fckInf)
+                .i(i)
+                .y(y)
+                .mr(mr);
+
+        double fi = 0;
+
     }
 
     private void calculaArmaduraFlexao() {

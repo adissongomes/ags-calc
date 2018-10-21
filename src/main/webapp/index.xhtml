@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
 
 <h:head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -144,23 +145,32 @@
                     <h:inputText id="q" value="#{calculoMBean.laje.q}" placeholder="0.00" size="8"/>
                 </div>
 
+                <div class="form-group column col-2 col-md-12">
+                    <label class="form-label custom-label" for="alpha">&alpha;<sub>e</sub> - Agregado</label>
+                    <h:inputText id="alpha" value="#{calculoMBean.laje.alpha}" placeholder="0.00" size="8"/>
+                    <span class="ui-icon ui-icon-help btn-icon" onclick="openAgregadosDialog('alpha')" />
+                </div>
+
                 <h4 class="column col-12">Pesos especificos</h4>
 
                 <div class="form-group column col-2 col-md-12">
                     <label class="form-label custom-label"
                            for="concretoArmado">Concreto armado (kN/m<sup>2</sup>)</label>
                     <h:inputText id="concretoArmado" value="#{calculoMBean.laje.GConcreto}" size="8"/>
+                    <span class="ui-icon ui-icon-help btn-icon" onclick="openPesosDialog('concretoArmado')" />
                 </div>
 
                 <div class="form-group column col-2 col-md-12">
                     <label class="form-label custom-label"
                            for="argamassa">Camada de regularização (kN/m<sup>2</sup>)</label>
                     <h:inputText id="argamassa" name="argamassa" value="#{calculoMBean.laje.GArg}" size="8"/>
+                    <span class="ui-icon ui-icon-help btn-icon" onclick="openPesosDialog('argamassa')" />
                 </div>
 
                 <div class="form-group column col-2 col-md-12">
                     <label class="form-label custom-label" for="material">Piso (kN/m<sup>2</sup>)</label>
                     <h:inputText id="material" name="material" value="#{calculoMBean.laje.GMat}" size="8"/>
+                    <span class="ui-icon ui-icon-help btn-icon" onclick="openPesosDialog('material')" />
                 </div>
 
                 <span class="column col-6 hide-md"/>
@@ -176,6 +186,8 @@
         <h:inputHidden id="result" value="#{calculoMBean.resultado}"/>
 
         <ui:include src="dialog-result.xhtml"/>
+        <ui:include src="dialog-agregados.xhtml"/>
+        <ui:include src="dialog-pesos.xhtml"/>
 
     </h:form>
 

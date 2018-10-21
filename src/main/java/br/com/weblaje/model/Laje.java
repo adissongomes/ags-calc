@@ -1,6 +1,5 @@
 package br.com.weblaje.model;
 
-import br.com.weblaje.table.AreaAcoValues;
 import br.com.weblaje.table.AreaAcoValues.AreaAcoData;
 import lombok.Builder;
 import lombok.Data;
@@ -116,7 +115,11 @@ public class Laje {
 
     private AreaAcoData dadosArmaduraLy;
 
+    private Flecha flecha;
+
     private String n1;
 
     private String n2;
+
+    private double alpha;
 }

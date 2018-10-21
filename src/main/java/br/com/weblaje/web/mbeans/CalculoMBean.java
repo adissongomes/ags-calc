@@ -50,6 +50,7 @@ public class CalculoMBean {
                         .argamassa(laje.getGArg())
                         .material(laje.getGMat())
                         .build())
+                .alpha(laje.getAlpha())
                 .build();
         Calculadora c = Calculadora.init(l);
         c.calcular();

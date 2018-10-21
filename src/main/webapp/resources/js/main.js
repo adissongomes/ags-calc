@@ -81,3 +81,23 @@ function desenhaRepresantacao(n1, n2) {
     ctx.fillText(n1, 105, 30);
     ctx.fillText(n2, 150, 120);
 }
+
+function openAgregadosDialog(inputId) {
+    PF('agregados').show();
+    selectTableValueToInput('agregados-table', inputId, 2);
+}
+
+function openPesosDialog(inputId) {
+    PF('pesos').show();
+    selectTableValueToInput('pesos-table', inputId, 2);
+}
+
+function selectTableValueToInput(tableId, inputId, childIndex) {
+    $('#'+ tableId + ' tr').click(function(element) {
+        var value = $(this).find('td:nth-child(' + childIndex + ')')[0].innerText;
+        if (inputId) {
+            var input = document.getElementById(inputId);
+            input.value = value;
+        }
+    });
+}

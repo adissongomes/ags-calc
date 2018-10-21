@@ -4,19 +4,17 @@ import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Limites;
 import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
-import br.com.weblaje.table.ASMinValues;
-import br.com.weblaje.table.AreaAcoValues;
-import br.com.weblaje.table.KMDValues;
-import br.com.weblaje.table.MarcusValues;
+import br.com.weblaje.table.*;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        MarcusValues values = MarcusValues.getInstance();
-        KMDValues kmdValues = KMDValues.getInstance();
-        AreaAcoValues acoValues = AreaAcoValues.getInstance();
-        ASMinValues asMinValues = ASMinValues.getInstance();
+        MarcusValues.getInstance();
+        KMDValues.getInstance();
+        AreaAcoValues.getInstance();
+        ASMinValues.getInstance();
+        FlechaValues.getInstance();
 
         Laje laje = getLajeDuplaDirecao();
 

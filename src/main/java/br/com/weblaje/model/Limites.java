@@ -25,7 +25,7 @@ public class Limites {
         switch (type) {
             case TYPE_2:
                 return builder
-                        .lx(Edge.ENGASTADO)
+                        .ly(Edge.ENGASTADO)
                         .build();
             case TYPE_3:
                 return builder
@@ -34,8 +34,8 @@ public class Limites {
                         .build();
             case TYPE_4:
                 return builder
-                        .lx(Edge.ENGASTADO)
-                        .lx1(Edge.ENGASTADO)
+                        .ly(Edge.ENGASTADO)
+                        .ly1(Edge.ENGASTADO)
                         .build();
             case TYPE_5:
                 return builder
