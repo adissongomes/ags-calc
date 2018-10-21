@@ -88,20 +88,28 @@ function desenhaRepresantacao(n1, n2) {
 
 function openAgregadosDialog(inputId) {
     PF('agregados').show();
-    selectTableValueToInput('agregados-table', inputId, 2);
+    selectTableValueToInput('agregados-table', inputId, 2, function() {
+        PF('agregados').hide();
+    });
 }
 
 function openPesosDialog(inputId) {
     PF('pesos').show();
-    selectTableValueToInput('pesos-table', inputId, 2);
+    selectTableValueToInput('pesos-table', inputId, 2, function() {
+        PF('pesos').hide();
+    });
 }
 
-function selectTableValueToInput(tableId, inputId, childIndex) {
+function selectTableValueToInput(tableId, inputId, childIndex, callback) {
     $('#'+ tableId + ' tbody tr').click(function(element) {
         var value = $(this).find('td:nth-child(' + childIndex + ')')[0].innerText;
         if (inputId) {
             var input = document.getElementById(inputId);
             input.value = value;
+
+            if (callback) {
+                callback();
+            }
         }
     });
 }
