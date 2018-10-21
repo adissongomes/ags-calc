@@ -6,6 +6,7 @@ import br.com.weblaje.model.Flecha;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.table.ASMinValues;
 import br.com.weblaje.table.AreaAcoValues;
+import br.com.weblaje.table.FlechaValues;
 import br.com.weblaje.table.KMDValues;
 
 import java.math.BigDecimal;
@@ -77,19 +78,39 @@ public abstract class Calculadora {
 
     protected void calculaFlechaImediata() {
 
-        Flecha.FlechaBuilder flexaBuilder = Flecha.builder();
+        Flecha.FlechaBuilder flechaBuilder = Flecha.builder();
 
         double fckInf = 0.7 * 0.3 * Math.pow(laje.getFck(), 2/3) * 1000;
         double i = 1 * laje.getAltura() / 12;
         double y = laje.getAltura() / 2;
         double mr = (1.5 * fckInf * i) / y;
 
-        flexaBuilder.fckInf(fckInf)
+        flechaBuilder.fckInf(fckInf)
                 .i(i)
                 .y(y)
                 .mr(mr);
 
-        double fi = 0;
+        double ei = laje.getAlpha() * 5600 * Math.sqrt(laje.getFck());
+        double alphaI = 0.8 + 0.2 * laje.getFck()/80;
+        alphaI = truncateValue(alphaI, 2);
+        double es = (ei * alphaI) / 10; // MPa -> KN/cm^2;
+        es = truncateValue(es, 2);
+
+        double alphaBares = FlechaValues.getInstance().getAlpha(laje);
+
+        // fi utiliza unidades em centimetros
+        double p = laje.getCarregamento().getP() / 10000;
+        double lx = laje.getLx() * 100;
+        double fi = alphaBares / 12 * p * Math.pow(lx, 4) / (es * 8300); // 8300 == 8.3 * 1000
+        fi = truncateValue(fi, 2);
+
+        flechaBuilder.ei(ei)
+                .es(es)
+                .alphaI(alphaI)
+                .alphaBares(alphaBares)
+                .fi(fi);
+
+        laje.setFlecha(flechaBuilder.build());
 
     }
 

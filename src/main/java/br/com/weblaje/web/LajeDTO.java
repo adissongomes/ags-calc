@@ -21,6 +21,6 @@ public class LajeDTO {
     private double e = 25;
     private double earg = 21;
     private double emat = 18;
-    private double alpha = 1.5;
+    private double alpha = 0.9;
 
 }

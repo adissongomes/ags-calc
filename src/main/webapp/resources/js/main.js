@@ -13,8 +13,11 @@
                 document.getElementById("mx-col").innerText = data.momento.mx;
                 document.getElementById("my-col").innerText = data.momento.my;
                 document.getElementById("p-col").innerText = data.carregamento.p;
-                document.getElementById("n1-col").innerText = data.n1;
-                document.getElementById("n2-col").innerText = data.n2;
+                document.getElementById("ei").innerText = data.flecha.ei;
+                document.getElementById("es").innerText = data.flecha.es;
+                document.getElementById("alphaI").innerText = data.flecha.alphaI;
+                document.getElementById("alphaBares").innerText = data.flecha.alphaBares;
+                document.getElementById("fi").innerText = data.flecha.fi;
 
                 PF('memorial').show();
             }
