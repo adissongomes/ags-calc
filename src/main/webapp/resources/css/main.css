@@ -1,8 +1,23 @@
-#memorial-table { border-collapse: collapse; }
-#memorial-table, #memorial-table td { border: 1px gray solid; padding: 5px; }
-#memorial-table td:nth-child(1) { width: 5em; }
+#memorial-table {
+    border-collapse: collapse;
+    font-size: 10pt;
+    width: 200px;
+    margin: auto;
+}
 
-.custom-label { font-size: 9pt; height: 50px;}
+#memorial-table, #memorial-table td {
+    border: 1px gray solid;
+    padding: 5px;
+}
+
+#memorial-table td:nth-child(1) {
+    width: 5em;
+}
+
+.custom-label {
+    font-size: 9pt;
+    height: 50px;
+}
 
 .btn-icon {
     display: inline-block !important;
@@ -41,6 +56,12 @@
     border: 4px solid gray;
 }
 
-#agregados-table tr, #pesos-table tr {
+#agregados-table thead,
+#pesos-table thead {
+    font-weight: bold;
+}
+
+#agregados-table tbody tr,
+#pesos-table tbody tr {
     cursor: pointer;
 }

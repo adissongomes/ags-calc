@@ -13,6 +13,7 @@
                 document.getElementById("mx-col").innerText = data.momento.mx;
                 document.getElementById("my-col").innerText = data.momento.my;
                 document.getElementById("p-col").innerText = data.carregamento.p;
+                document.getElementById("mr").innerText = data.flecha.mr;
                 document.getElementById("ei").innerText = data.flecha.ei;
                 document.getElementById("es").innerText = data.flecha.es;
                 document.getElementById("alphaI").innerText = data.flecha.alphaI;
@@ -96,7 +97,7 @@ function openPesosDialog(inputId) {
 }
 
 function selectTableValueToInput(tableId, inputId, childIndex) {
-    $('#'+ tableId + ' tr').click(function(element) {
+    $('#'+ tableId + ' tbody tr').click(function(element) {
         var value = $(this).find('td:nth-child(' + childIndex + ')')[0].innerText;
         if (inputId) {
             var input = document.getElementById(inputId);
