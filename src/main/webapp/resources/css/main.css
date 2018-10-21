@@ -58,10 +58,18 @@
 
 #agregados-table thead,
 #pesos-table thead {
+    font-size: 10pt;
     font-weight: bold;
 }
 
 #agregados-table tbody tr,
 #pesos-table tbody tr {
+    font-size: 10pt;
     cursor: pointer;
+}
+
+#agregados-table td,
+#pesos-table td {
+    font-size: 10pt;
+    padding: 5px;
 }
