@@ -5,35 +5,47 @@ import br.com.weblaje.model.Limites;
 import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
 import br.com.weblaje.table.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.DispatcherType;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.context.annotation.Bean;
 
+import javax.faces.webapp.FacesServlet;
+import java.util.EnumSet;
+
+@SpringBootApplication
 public class Main {
 
     public static void main(String[] args) {
 
-        MarcusValues.getInstance();
-        KMDValues.getInstance();
-        AreaAcoValues.getInstance();
-        ASMinValues.getInstance();
-        FlechaValues.getInstance();
-
-        Laje laje = getLajeDuplaDirecao();
-
-        Calculadora c = Calculadora.init(laje);
-        c.calcular();
-
-        System.out.println(laje.getN1());
-        System.out.println(laje.getN2());
-        System.out.println(laje.getCarregamento());
-        System.out.println(laje.getMomento());
-
-        laje = getLajeUnicaDirecao();
-        c = Calculadora.init(laje);
-        c.calcular();
-
-        System.out.println(laje.getN1());
-        System.out.println(laje.getN2());
-        System.out.println(laje.getCarregamento());
-        System.out.println(laje.getMomento());
+        SpringApplication.run(Main.class, args);
+//
+//        MarcusValues.getInstance();
+//        KMDValues.getInstance();
+//        AreaAcoValues.getInstance();
+//        ASMinValues.getInstance();
+//        FlechaValues.getInstance();
+//
+//        Laje laje = getLajeDuplaDirecao();
+//
+//        Calculadora c = Calculadora.init(laje);
+//        c.calcular();
+//
+//        System.out.println(laje.getN1());
+//        System.out.println(laje.getN2());
+//        System.out.println(laje.getCarregamento());
+//        System.out.println(laje.getMomento());
+//
+//        laje = getLajeUnicaDirecao();
+//        c = Calculadora.init(laje);
+//        c.calcular();
+//
+//        System.out.println(laje.getN1());
+//        System.out.println(laje.getN2());
+//        System.out.println(laje.getCarregamento());
+//        System.out.println(laje.getMomento());
 
     }
 

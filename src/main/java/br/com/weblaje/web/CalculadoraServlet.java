@@ -7,7 +7,7 @@ import br.com.weblaje.model.Limites;
 import br.com.weblaje.model.PesosEspecificos;
 import br.com.weblaje.service.Calculadora;
 import br.com.weblaje.table.MarcusValues.MarcusType;
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -60,11 +60,13 @@ public class CalculadoraServlet extends HttpServlet {
         Calculadora c = Calculadora.init(laje);
         c.calcular();
 
-        Gson gson = new Gson();
+        ObjectMapper mapper = new ObjectMapper();
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(gson.toJson(laje));
+        resp.getWriter().write(mapper
+                .writerWithDefaultPrettyPrinter()
+                .writeValueAsString(laje));
 
     }
 }

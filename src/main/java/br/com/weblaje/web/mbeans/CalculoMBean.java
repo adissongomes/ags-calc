@@ -1,14 +1,12 @@
 package br.com.weblaje.web.mbeans;
 
-import br.com.weblaje.model.Aco;
 import br.com.weblaje.model.Laje;
 import br.com.weblaje.model.Limites;
-import br.com.weblaje.model.PesosEspecificos;
-import br.com.weblaje.service.Calculadora;
 import br.com.weblaje.table.MarcusValues.MarcusType;
+import br.com.weblaje.web.CalculadoraService;
 import br.com.weblaje.web.LajeDTO;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 
 import javax.faces.bean.ManagedBean;
@@ -22,41 +20,25 @@ public class CalculoMBean {
 
     private LajeDTO laje;
     private String resultado;
+    private CalculadoraService service;
 
     public CalculoMBean() {
         Logger.getGlobal().info("CalculoMBean ...");
         this.laje = new LajeDTO();
+        service = new CalculadoraService();
     }
 
-    public void calcular() {
+    public void calcular() throws JsonProcessingException {
         Limites limites = Limites.buildLimites(MarcusType.valueOf(laje.getContorno()));
 
         Logger.getGlobal().info("CalculoMBean#calcular");
 
-        Laje l = Laje.builder()
-                .lx(laje.getLx())
-                .ly(laje.getLy())
-                .fck(laje.getFck())
-                .q(laje.getQ())
-                .altura(laje.getAltura() / 100)
-                .limites(limites)
-                .aco(Aco.valueOf(laje.getAco()))
-                .caa(Laje.CAA.II.valueOf(laje.getCaa()))
-                .espessuraConcreto(laje.getE() / 1000)
-                .espessuraArgamassa(laje.getEarg() / 1000)
-                .espessuraMaterial(laje.getEmat() / 1000)
-                .pesosEspecificos(PesosEspecificos.builder()
-                        .concretoArmado(laje.getGConcreto())
-                        .argamassa(laje.getGArg())
-                        .material(laje.getGMat())
-                        .build())
-                .alpha(laje.getAlpha())
-                .build();
-        Calculadora c = Calculadora.init(l);
-        c.calcular();
+        Laje l = service.calcular(laje);
 
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        resultado = gson.toJson(l);
+        ObjectMapper mapper = new ObjectMapper();
+        resultado = mapper
+                .writerWithDefaultPrettyPrinter()
+                .writeValueAsString(l);
     }
 
 }

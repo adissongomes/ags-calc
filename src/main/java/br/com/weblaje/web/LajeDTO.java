@@ -3,24 +3,41 @@ package br.com.weblaje.web;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotNull;
+
 @Data
 @NoArgsConstructor
 public class LajeDTO {
 
-    private double lx = 4;
-    private double ly = 5;
-    private double altura = 10;
+    @NotNull
+    private Double lx = 4.0;
+    @NotNull
+    private Double ly = 5.0;
+    @NotNull
+    private Double altura = 10.0;
+    @NotNull
     private String contorno = "TYPE_3";
+    @NotNull
     private String caa = "II";
+    @NotNull
     private String aco = "CA50";
-    private int fck = 25;
-    private double q = 1.5;
-    private double gConcreto = 25;
-    private double gArg = 20;
-    private double gMat = 18;
-    private double e = 25;
-    private double earg = 21;
-    private double emat = 18;
-    private double alpha = 0.9;
+    @NotNull
+    private Integer fck = 25;
+    @NotNull
+    private Double q = 1.5;
+    @NotNull
+    private Double gConcreto = 25.0;
+    @NotNull
+    private Double gArg = 20.0;
+    @NotNull
+    private Double gMat = 18.0;
+    @NotNull
+    private Double e = 25.0;
+    @NotNull
+    private Double earg = 21.0;
+    @NotNull
+    private Double emat = 18.0;
+    @NotNull
+    private Double alpha = 0.9;
 
 }

@@ -2,7 +2,10 @@ plugins {
     id 'war'
     id 'java'
     id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'org.springframework.boot' version '2.1.0.RELEASE'
 }
+
+apply plugin: 'io.spring.dependency-management'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -20,30 +23,14 @@ lombok {
 }
 
 dependencies {
-    compile 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.47'
-    compile 'com.google.code.gson:gson:2.8.5'
-
-    compile 'org.primefaces:primefaces:6.0'
-    compile 'com.sun.faces:jsf-api:2.2.17'
-    compile 'com.sun.faces:jsf-impl:2.2.17'
+    compile "org.springframework.boot:spring-boot-starter-web"
+    compile "org.springframework.boot:spring-boot-starter-security"
+    compile ("org.joinfaces:primefaces-spring-boot-starter:3.2.1")
 
     testCompile 'junit:junit:4.12'
 }
 
-task copyLibs(type: Copy) {
-    into "$buildDir/libs"
-    from configurations.compile
-}
-
-jar {
+bootJar {
     archiveName = 'webslab.jar'
-    manifest {
-        attributes(
-            'Main-Class' : 'br.com.weblaje.Startup',
-            'Class-Path': configurations.compile.collect { it.getName() }.join(' ')
-        )
-    }
+    mainClassName = 'br.com.weblaja.Main'
 }
-
-jar.dependsOn copyLibs
-
