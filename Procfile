@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/webslab.war
+web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/webslab.jar
