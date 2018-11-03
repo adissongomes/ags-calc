@@ -19,12 +19,8 @@ public class AreaAcoValuesTest {
 		AreaAcoValues values = AreaAcoValues.getInstance();
 
 		AreaAcoData data = AreaAcoData.builder()
-				.as(7.14).espacamento(7).diametro(8).build();
+				.as(7.14).espacamento(17.5).diametro(12.5).build();
 		assertEquals(data, values.getData(7.14));
-
-		data = AreaAcoData.builder()
-				.as(4.85).espacamento(6.5).diametro(6.3).build();
-		assertEquals(data, values.getData(4.85));
 
 	}
 }

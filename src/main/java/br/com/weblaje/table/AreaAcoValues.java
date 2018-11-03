@@ -22,14 +22,13 @@ public class AreaAcoValues {
     }
 
     public AreaAcoData getData(double as) {
-        double eligible = as;
         AreaAcoData dataTemp = null;
         List<AreaAcoData> eligebles = new ArrayList<>();
 
         for(Double k: acoTable.keySet()) {
             double absTemp = k - as;
             AreaAcoData d = acoTable.get(k);
-            if (absTemp > 0 && absTemp <= 0.1 && d.getEspacamento() >= 9 & d.getEspacamento() <= 27) {
+            if (absTemp >= 0 && absTemp <= 0.1 && d.getEspacamento() >= 9 & d.getEspacamento() <= 27) {
                 eligebles.add(d);
             }
         }
