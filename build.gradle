@@ -32,5 +32,5 @@ dependencies {
 
 bootJar {
     archiveName = 'webslab.jar'
-    mainClassName = 'br.com.weblaja.Main'
+    mainClassName = 'br.com.weblaje.Main'
 }
